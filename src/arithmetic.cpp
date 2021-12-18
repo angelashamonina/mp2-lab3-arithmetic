@@ -1,4 +1,4 @@
-#include <arithmetic.h>
+#include "../include/arithmetic.h"
 #include <cmath>
 void Arithmetic::vectorLexem(string& str)
 {
