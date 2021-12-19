@@ -78,7 +78,7 @@ void Arithmetic::vectorLexem(string& str)
 			lexm.push_back(number);
 			stringnum.clear(); 
 		}
-		else if ((str[i] == 'a') || (str[i] == 'b')|| (str[i] == 'z'))
+		else if ((str[i] == 'x') || (str[i] == 'y')|| (str[i] == 'z'))
 		{
 			Lexem A(str[i]);
 			lexm.push_back(A);
@@ -99,7 +99,7 @@ void Arithmetic::Postfix()
 	TStack <Lexem> operations;
 	for (int i = 0; i < lexm.size(); i++)
 	{
-		if (lexm[i].GetType() == true|| (lexm[i].GetOperation() == "a") || (lexm[i].GetOperation() == "b") || (lexm[i].GetOperation() == "z"))
+		if (lexm[i].GetType() == true|| (lexm[i].GetOperation() == "x") || (lexm[i].GetOperation() == "y") || (lexm[i].GetOperation() == "z"))
 		{ 
 			postfix.push_back(lexm[i]); 
 
