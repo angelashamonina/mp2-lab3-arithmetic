@@ -16,7 +16,7 @@ void Arithmetic::vectorLexem(string& str)
 		else if (str[i]=='s' && str[i+1]=='i' && str[i + 2] == 'n') 
 		{
 			if (str[i + 3] != '(')
-				throw("Arguments of mathematical functions must be written in parentheses");
+				throw("Arguments of functions must be written with brackets");
 			Lexem operation("sin");
 			lexm.push_back(operation);
 			i = i + 3;
@@ -24,7 +24,7 @@ void Arithmetic::vectorLexem(string& str)
 		else if (str[i] == 'c' && str[i + 1] == 'o' && str[i + 2] == 's') 
 		{
 			if (str[i + 3] != '(')
-				throw("Arguments of mathematical functions must be written in parentheses");
+				throw("Arguments of functions must be written with brackets");
 			Lexem operation("cos");
 			lexm.push_back(operation);
 			i = i + 3;
@@ -89,7 +89,7 @@ void Arithmetic::vectorLexem(string& str)
 			lexm.push_back(bracket);
 			i++;
 		}
-		else { cout << str[i] << endl; throw "error simbol"; break; }
+		else { cout << str[i] << endl; throw "error symbol"; break; }
 		
 	}
 }
