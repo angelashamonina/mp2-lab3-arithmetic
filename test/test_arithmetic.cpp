@@ -1,3 +1,4 @@
+// тесты для вычисления арифметических выражений
 #include <arithmetic.h>
 #include <gtest.h>
 TEST(Lexem, can_create_lexeme)
@@ -32,7 +33,7 @@ TEST(Lexem, can_get_lexeme_type)
 
 TEST(Arithmetic, can_be_divided_into_vector_of_lexems)
 {
-	string s = "a+b-(2*4+5)";
+	string s = "x+y-(2*4+5)";
 	Arithmetic res;
 	EXPECT_NO_THROW(res.vectorLexem(s));
 }
@@ -100,24 +101,10 @@ TEST(Arithmetic, can_all_operations) {
 	res.Postfix();
 	EXPECT_NEAR(5.75, res.calculation(), 1e-5);
 }
-TEST(Arithmetic, can_all_functions) {
-	Arithmetic res;
-	string s = "sin(1)+cos(1)+log(1)";
-	res.vectorLexem(s);
-	res.Postfix();
-	EXPECT_NEAR(1.38177, res.calculation(), 1e-5);
-}
 TEST(Arithmetic, throw_when_operation_before_closing_bracket)
 {
 	Arithmetic res;
 	string s = "6+(7+9/)";
-	res.vectorLexem(s);
-	ASSERT_ANY_THROW(res.Correct());
-}
-TEST(Arithmetic, throw_when_function_after_closing_bracket)
-{
-	Arithmetic res;
-	string s = "(15/3)log(1)";
 	res.vectorLexem(s);
 	ASSERT_ANY_THROW(res.Correct());
 }
