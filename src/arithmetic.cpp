@@ -13,30 +13,6 @@ void Arithmetic::vectorLexem(string& str)
 			lexm.push_back(operation);
 			i++;
 		}
-		else if (str[i]=='s' && str[i+1]=='i' && str[i + 2] == 'n') 
-		{
-			if (str[i + 3] != '(')
-				throw("Arguments of functions must be written with brackets");
-			Lexem operation("sin");
-			lexm.push_back(operation);
-			i = i + 3;
-		}
-		else if (str[i] == 'c' && str[i + 1] == 'o' && str[i + 2] == 's') 
-		{
-			if (str[i + 3] != '(')
-				throw("Arguments of functions must be written with brackets");
-			Lexem operation("cos");
-			lexm.push_back(operation);
-			i = i + 3;
-		}
-		else if (str[i] == 'l' && str[i + 1] == 'o' && str[i + 2] == 'g')
-		{
-			if (str[i + 3] != '(')
-				throw("Arguments of functions must be written with brackets");
-			Lexem operation("log");
-			lexm.push_back(operation);
-			i = i + 3;
-		}
 		else if (str[i] == '-') 
 		{
 			if (i == 0) {
@@ -154,21 +130,6 @@ double Arithmetic::calculation()
 			stack.push(res);
 			continue;
 		}
-		else if (lexm[i].GetOperation() == "sin") {
-			res = sin(stack.pop().GetValue());
-			stack.push(res);
-			
-		}
-		else if (lexm[i].GetOperation() == "cos") {
-			res = cos(stack.pop().GetValue());
-			stack.push(res);
-
-		}
-		else if (lexm[i].GetOperation() == "log") {
-			res = log(stack.pop().GetValue());
-			stack.push(res);
-
-		}
 		else {
 			lexOp2 = stack.pop();
 			lexOp1 = stack.pop();
@@ -214,15 +175,13 @@ bool Arithmetic::checkBrackets()
 			if ((i < lexm.size() - 1) && (lexm[i + 1] == '(')) {
 				throw "Opening bracket after closing bracket";
 			}
-			if (i > 0 && !(lexm[i - 1].GetType())) {
+			if (i > 0 && lexm[i - 1].GetType()==false) {
 				throw "Operation before closing bracket";
 			}
 			if ((i < lexm.size() - 1) && (lexm[i + 1].GetType() == true)) {
 				throw "Number after closing bracket";
 			}
-			if ((i < lexm.size() - 1) && (lexm[i+1].GetOperation() == "sin" || lexm[i+1].GetOperation() == "cos" || lexm[i+1].GetOperation() == "log")) {
-				throw "Function cannot be after function or closing bracket";
-			}
+
 			count--;
 			flag = true;
 		}
@@ -246,7 +205,7 @@ bool Arithmetic::Correct()
 			if ((i > 0) && lexm[i - 1].GetType() == false&& lexm[i-1].GetOperation()!=")" && (lexm[i].GetOperation() == "+" || lexm[i].GetOperation() == "*" || lexm[i].GetOperation() == "/")) {
 				throw "Operation after operation";
 			}
-			else if((i > 0)&& lexm[i - 1].GetType() == true && (lexm[i].GetType() == true || lexm[i].GetOperation() == "sin" || lexm[i].GetOperation() == "cos" || lexm[i].GetOperation() == "log")){
+			else if((i > 0)&& lexm[i - 1].GetType() == true && lexm[i].GetType() == true ){
 				throw "Lost operation";
 			}
 
@@ -265,8 +224,6 @@ int Lexem::priority()
 	else if (oper == "*") return 3;
 	else if (oper == "/") return 3;
 	else if (oper == "_") return 4;//unar minus
-	else if (oper == "sin") return 4;
-	else if (oper == "cos") return 4;
-	else if (oper == "log") return 4;
 	else throw "error operation";
 }
+
