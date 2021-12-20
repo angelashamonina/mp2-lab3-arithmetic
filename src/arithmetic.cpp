@@ -47,7 +47,7 @@ void Arithmetic::vectorLexem(string& str)
 			}
 			if (i > 0) 
 			{
-				if (lexm[lexm.size()-1].GetOperation() != ")" && lexm[lexm.size() - 1].GetType() == false) {
+				if (lexm[lexm.size()-1].GetOperation() != ")" && lexm[lexm.size() - 1].GetType() == false && lexm[lexm.size() - 1].GetOperation() != "x" && lexm[lexm.size() - 1].GetOperation() != "y" && lexm[lexm.size() - 1].GetOperation() != "z") {
 					Lexem unar_minus('_');
 					lexm.push_back(unar_minus);
 					i++;
