@@ -95,7 +95,7 @@ public:
 		double a;
 		for (int i = 0; i < s.lexm.size(); i++)
 		{
-			if (s.lexm[i].GetType()==false && ((s.lexm[i].GetOperation() == "a") || (s.lexm[i].GetOperation() == "b")|| (s.lexm[i].GetOperation() == "z")))
+			if (s.lexm[i].GetType()==false && ((s.lexm[i].GetOperation() == "x") || (s.lexm[i].GetOperation() == "y")|| (s.lexm[i].GetOperation() == "z")))
 			{
 				cout << "Enter a variable" << endl;
 				cin >> a;
