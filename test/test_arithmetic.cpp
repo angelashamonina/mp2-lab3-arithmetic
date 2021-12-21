@@ -37,6 +37,13 @@ TEST(Arithmetic, can_be_divided_into_vector_of_lexems)
 	Arithmetic res;
 	EXPECT_NO_THROW(res.vectorLexem(s));
 }
+TEST(Arithmetic, can_postfix)
+{
+	string s = "x+y-(2*4+5)";
+	Arithmetic res;
+	res.vectorLexem(s);
+	EXPECT_NO_THROW(res.Postfix());
+}
 TEST(Arithmetic, can_sum_two_num)
 {
 	Arithmetic res;
