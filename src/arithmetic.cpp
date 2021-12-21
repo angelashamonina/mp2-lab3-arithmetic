@@ -166,7 +166,7 @@ bool Arithmetic::checkBrackets()
 			if ((i < lexm.size() - 1) && (lexm[i + 1] == ')' )) {
 				throw "You have empty brackets";
 			}
-			if (i > 0 && lexm[i-1].GetType()) {
+			if (i > 0 &&(lexm[i - 1].GetType()||lexm[i - 1].GetOperation()=="x" || lexm[i - 1].GetOperation() == "y"|| lexm[i - 1].GetOperation() == "z")) {
 				throw "Number before opening bracket";
 			}
 		}
@@ -175,10 +175,10 @@ bool Arithmetic::checkBrackets()
 			if ((i < lexm.size() - 1) && (lexm[i + 1] == '(')) {
 				throw "Opening bracket after closing bracket";
 			}
-			if (i > 0 && lexm[i - 1].GetType()==false) {
+			if (i > 0 && lexm[i - 1].GetType()==false && lexm[i - 1] != ')' && lexm[i - 1].GetOperation() != "x" && lexm[i - 1].GetOperation() != "y" && lexm[i - 1].GetOperation() != "z") {
 				throw "Operation before closing bracket";
 			}
-			if ((i < lexm.size() - 1) && (lexm[i + 1].GetType() == true)) {
+			if ((i < lexm.size() - 1) && (lexm[i + 1].GetType() == true || lexm[i - 1].GetOperation() == "x" || lexm[i - 1].GetOperation() == "y" || lexm[i - 1].GetOperation() == "z")) {
 				throw "Number after closing bracket";
 			}
 
@@ -202,10 +202,13 @@ bool Arithmetic::Correct()
 	else {
 		for (int i = 0; i < lexm.size(); i++)
 	{
-			if ((i > 0) && lexm[i - 1].GetType() == false&& lexm[i-1].GetOperation()!=")" && (lexm[i].GetOperation() == "+" || lexm[i].GetOperation() == "*" || lexm[i].GetOperation() == "/")) {
+			if ((i > 0) && (lexm[i-1].GetOperation() == "+" || lexm[i-1].GetOperation() == "*" || lexm[i-1].GetOperation() == "/") && lexm[i-1].GetOperation()!=")" && (lexm[i].GetOperation() == "+" || lexm[i].GetOperation() == "*" || lexm[i].GetOperation() == "/")) {
 				throw "Operation after operation";
 			}
-			else if((i > 0)&& lexm[i - 1].GetType() == true && lexm[i].GetType() == true ){
+			else if((i > 0)&& (lexm[i - 1].GetType() == true && lexm[i].GetType() == true) ){
+				throw "Lost operation";
+			}
+			else if((i > 0)&& (lexm[i - 1].GetOperation() == "x" || lexm[i - 1].GetOperation() == "y" || lexm[i - 1].GetOperation() == "z")&& (lexm[i].GetOperation() == "x" || lexm[i].GetOperation() == "y" || lexm[i].GetOperation() == "z")){
 				throw "Lost operation";
 			}
 
@@ -226,4 +229,3 @@ int Lexem::priority()
 	else if (oper == "_") return 4;//unar minus
 	else throw "error operation";
 }
-
