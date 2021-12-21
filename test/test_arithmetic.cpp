@@ -101,12 +101,26 @@ TEST(Arithmetic,can_more_one_unar_minus)
 	res.Postfix();
 	EXPECT_EQ(0.0, res.calculation());
 }
-TEST(Arithmetic, can_all_operations) {
+TEST(Arithmetic, can_all_operations1) {
 	Arithmetic res;
-	string s = "6.25 + 4. / 8*5.-3";
+	string s = "2+3*(17---1)/8";
 	res.vectorLexem(s);
 	res.Postfix();
-	EXPECT_NEAR(5.75, res.calculation(), 1e-5);
+	EXPECT_EQ(8.0, res.calculation());
+}
+TEST(Arithmetic, can_all_operations2) {
+	Arithmetic res;
+	string s = "15/3+12+-2";
+	res.vectorLexem(s);
+	res.Postfix();
+	EXPECT_EQ(15.0, res.calculation());
+}
+TEST(Arithmetic, can_all_operations3) {
+	Arithmetic res;
+	string s = "(1----2+3)*10+17";
+	res.vectorLexem(s);
+	res.Postfix();
+	EXPECT_EQ(77.0, res.calculation());
 }
 TEST(Arithmetic, throw_when_operation_before_closing_bracket)
 {
@@ -191,4 +205,11 @@ TEST(Arithmetic, throw_when_number_after_number)
 	string s = "7 1 8 - 1";
 	res.vectorLexem(s);
 	ASSERT_ANY_THROW(res.Correct());
+}
+TEST(Arithmetic, can_all_operations4) {
+	Arithmetic res;
+	string s = "6.25 + 4. / 8*5.-3";
+	res.vectorLexem(s);
+	res.Postfix();
+	EXPECT_NEAR(5.75, res.calculation(), 1e-5);
 }
