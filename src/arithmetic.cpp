@@ -130,6 +130,7 @@ double Arithmetic::calculation()
 			stack.push(res);
 			continue;
 		}
+
 		else {
 			lexOp2 = stack.pop();
 			lexOp1 = stack.pop();
@@ -178,7 +179,7 @@ bool Arithmetic::checkBrackets()
 			if (i > 0 && lexm[i - 1].GetType()==false && lexm[i - 1] != ')' && lexm[i - 1].GetOperation() != "x" && lexm[i - 1].GetOperation() != "y" && lexm[i - 1].GetOperation() != "z") {
 				throw "Operation before closing bracket";
 			}
-			if ((i < lexm.size() - 1) && (lexm[i + 1].GetType() == true || lexm[i - 1].GetOperation() == "x" || lexm[i - 1].GetOperation() == "y" || lexm[i - 1].GetOperation() == "z")) {
+			if ((i < lexm.size() - 1) && (lexm[i + 1].GetType() == true || lexm[i + 1].GetOperation() == "x" || lexm[i +1].GetOperation() == "y" || lexm[i + 1].GetOperation() == "z")) {
 				throw "Number after closing bracket";
 			}
 
