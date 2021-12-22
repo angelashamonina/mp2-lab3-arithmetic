@@ -92,21 +92,77 @@ public:
 	}
 	void PutVariable(Arithmetic& s)
 	{
-		double a;
+		double x,y,z;
 		for (int i = 0; i < s.lexm.size(); i++)
 		{
-			if (s.lexm[i].GetType()==false && ((s.lexm[i].GetOperation() == "x") || (s.lexm[i].GetOperation() == "y")|| (s.lexm[i].GetOperation() == "z")))
+			if ((s.lexm[i].GetOperation() == "x"))
 			{
-				cout << "Enter a variable" << endl;
-				cin >> a;
-				Lexem A(a);
-				s.lexm[i] = A;
-			}
+				cout << "Enter x" << endl;
+				cin >> x;
+				if (cin.fail())
+				{
+					throw "Incorrect input.";
+				}
+				break;
+				
+			}	
 		}
-		
+		for (int i = 0; i < s.lexm.size(); i++)
+		{
+			if ((s.lexm[i].GetOperation() == "y"))
+			{
+				cout << "Enter y" << endl;
+				cin >> y;
+				if (cin.fail())
+				{
+					throw "Incorrect input.";
+				}
+				break;
+
+			}
+
+		}
+		for (int i = 0; i < s.lexm.size(); i++)
+		{
+			if ((s.lexm[i].GetOperation() == "z"))
+			{
+				cout << "Enter z" << endl;
+				cin >> z;
+				if (cin.fail())
+				{
+					throw "Incorrect input.";
+				}
+				break;
+
+			}
+
+		}
+		for (int i = 0; i < s.lexm.size(); i++)
+		{
+			if ((s.lexm[i].GetOperation() == "x"))
+			{
+				Lexem A(x);
+				s.lexm[i] = A;
+
+			}
+			if ((s.lexm[i].GetOperation() == "y"))
+			{
+				Lexem A(y);
+				s.lexm[i] = A;
+
+			}
+			if ((s.lexm[i].GetOperation() == "z"))
+			{
+				Lexem A(z);
+				s.lexm[i] = A;
+
+			}
+
+		}
 	}
 	bool checkBrackets();
     bool Correct();
 };
 
 #endif 
+
