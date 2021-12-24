@@ -209,6 +209,12 @@ bool Arithmetic::Correct()
 			else if((i > 0)&& (lexm[i - 1].GetType() == true && lexm[i].GetType() == true) ){
 				throw "Lost operation";
 			}
+			else if ((i > 0) && lexm[i - 1].GetType() == true && (lexm[i].GetOperation() == "x" || lexm[i].GetOperation() == "y" || lexm[i].GetOperation() == "z")) {
+				throw "Lost operation";
+			}
+			else if ((i > 0) && lexm[i].GetType() == true && (lexm[i-1].GetOperation() == "x" || lexm[i-1].GetOperation() == "y" || lexm[i-1].GetOperation() == "z")) {
+				throw "Lost operation";
+			}
 			else if((i > 0)&& (lexm[i - 1].GetOperation() == "x" || lexm[i - 1].GetOperation() == "y" || lexm[i - 1].GetOperation() == "z")&& (lexm[i].GetOperation() == "x" || lexm[i].GetOperation() == "y" || lexm[i].GetOperation() == "z")){
 				throw "Lost operation";
 			}
