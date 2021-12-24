@@ -18,12 +18,6 @@ TEST(Lexem, can_lexeme_operation)
 	Lexem A(l);
 	EXPECT_EQ(l, A.GetOperation());
 }
-TEST(Lexem, can_lexeme_function)
-{
-	string l = "cos";
-	Lexem A(l);
-	EXPECT_EQ(l, A.GetOperation());
-}
 TEST(Lexem, can_get_lexeme_type)
 {
 	double l = 23;
